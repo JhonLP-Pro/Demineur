@@ -1,0 +1,218 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --cell-bg: #e0e0e0;
+    --cell-hover: #d0d0d0;
+    --border-color: #999999;
+    --header-bg: #f0f0f0;
+    --scrollbar-bg: #f0f0f0;
+    --scrollbar-thumb: #999999;
+    --scrollbar-thumb-hover: #777777;
+}
+
+.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --cell-bg: #2d2d2d;
+    --cell-hover: #3d3d3d;
+    --border-color: #404040;
+    --header-bg: #2a2a2a;
+    --scrollbar-bg: #2a2a2a;
+    --scrollbar-thumb: #404040;
+    --scrollbar-thumb-hover: #505050;
+}
+
+/* Style de la barre de défilement */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* Style Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 1rem;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+button, select {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--cell-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover, select:hover {
+    background-color: var(--cell-hover);
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.2rem;
+}
+
+.board-container {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 0 1rem;
+}
+
+#game-board {
+    display: grid;
+    gap: 2px;
+    margin: 0 auto;
+    background-color: var(--border-color);
+    padding: 2px;
+    border-radius: 5px;
+    max-width: 100%;
+    overflow: visible;
+    grid-auto-rows: min-content;
+    grid-auto-flow: row;
+    white-space: nowrap;
+}
+
+.cell {
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--cell-bg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    margin: -0.5px;
+}
+
+.cell:hover {
+    background-color: var(--cell-hover);
+}
+
+.cell.revealed {
+    background-color: var(--bg-color);
+}
+
+.cell.mine {
+    background-color: #ff4444;
+}
+
+.cell.flagged {
+    background-color: #ffeb3b;
+}
+
+#game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--header-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.hidden {
+    display: none;
+}
+
+.message {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0.5rem;
+        margin: 0.5rem;
+        width: 100%;
+    }
+
+    .cell {
+        min-width: 25px;
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+
+    .controls {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    #game-board {
+        overflow-x: auto;
+        max-width: calc(100vw - 1rem);
+        padding: 1px;
+        gap: 1px;
+    }
+}
+
+@media (max-width: 400px) {
+    .cell {
+        min-width: 20px;
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+}
